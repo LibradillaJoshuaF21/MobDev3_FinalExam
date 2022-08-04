@@ -40,7 +40,7 @@ class _TasksDrawerState extends State<TasksDrawer> {
                   leading: const Icon(Icons.folder_special),
                   title: const Text('My Tasks'),
                   trailing: Text(
-                    '${state.allTasks.length} | ${state.allTasks.length}',
+                    '${state.pendingTasks.length} | ${state.completedTasks.length}',
                   ),
                   onTap: () => Navigator.pushReplacementNamed(
                     context,
