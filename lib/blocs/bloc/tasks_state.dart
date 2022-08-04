@@ -11,7 +11,7 @@ class TasksState extends Equatable {
   List<Object> get props => [allTasks];
 
   Map<String, dynamic> toMap() {
-    return <String, dynamic>{
+    return {
       'allTasks': allTasks.map((x) => x.toMap()).toList(),
     };
   }
