@@ -20,10 +20,6 @@ class _AddEditTaskState extends State<AddEditTask> {
   late String _title;
   late String _description;
 
-  late final TextEditingController titleController;
-
-  late final TextEditingController descController;
-
   @override
   void initState() {
     final task = widget.task;
@@ -54,7 +50,6 @@ class _AddEditTaskState extends State<AddEditTask> {
             TextFormField(
               initialValue: _title,
               autofocus: true,
-              controller: titleController,
               decoration: const InputDecoration(
                 label: Text('Title'),
                 border: OutlineInputBorder(),
@@ -71,7 +66,6 @@ class _AddEditTaskState extends State<AddEditTask> {
             const SizedBox(height: 20),
             TextFormField(
               initialValue: _description,
-              controller: descController,
               decoration: const InputDecoration(
                 label: Text('Description'),
                 border: OutlineInputBorder(),
@@ -99,20 +93,13 @@ class _AddEditTaskState extends State<AddEditTask> {
                   onPressed: _title.isNotEmpty && _description.isNotEmpty
                       ? () {
                           var task = Task(
-                            title: titleController.text,
-                            description: descController.text,
-                          );
-                          context.read<TasksBloc>().add(UpdateTask(task: task));
-                          Navigator.pop(context);
-                        }
-                      : () {
-                          var task = Task(
-                            title: titleController.text,
-                            description: descController.text,
+                            title: _title,
+                            description: _description,
                           );
                           context.read<TasksBloc>().add(AddTask(task: task));
                           Navigator.pop(context);
-                        },
+                        }
+                      : null,
                   child: widget.task == null
                       ? const Text('Add')
                       : const Text('Save'),
