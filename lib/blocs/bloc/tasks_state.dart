@@ -1,6 +1,6 @@
 part of 'tasks_bloc.dart';
 
-abstract class TasksState extends Equatable {
+class TasksState extends Equatable {
   final List<Task> allTasks;
 
   const TasksState({
