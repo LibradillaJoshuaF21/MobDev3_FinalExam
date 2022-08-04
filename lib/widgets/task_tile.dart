@@ -5,6 +5,8 @@ import '../models/task.dart';
 import 'add_edit_task.dart';
 import 'popup_menu.dart';
 
+import '../blocs/bloc_exports.dart';
+
 class TaskTile extends StatelessWidget {
   const TaskTile({Key? key, required this.task}) : super(key: key);
 
@@ -66,7 +68,11 @@ class TaskTile extends StatelessWidget {
           children: [
             Checkbox(
                 value: task.isDone,
-                onChanged: task.isDeleted! ? null : (value) {}),
+                onChanged: task.isDeleted!
+                    ? null
+                    : (value) {
+                        context.read<TasksBloc>().add(UpdateTask(task: task));
+                      }),
             PopupMenu(
               task: task,
               editCallback: () {
