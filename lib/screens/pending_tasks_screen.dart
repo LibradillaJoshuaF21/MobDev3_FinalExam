@@ -1,4 +1,3 @@
-import 'package:bloc_finals_exam/models/task.dart';
 import 'package:flutter/material.dart';
 
 import '../blocs/bloc_exports.dart';
@@ -12,7 +11,6 @@ class PendingTasksScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<TasksBloc, TasksState>(
       builder: (context, state) {
-        List<Task> tasksList = state.pendingTasks;
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
           child: Column(
@@ -21,12 +19,12 @@ class PendingTasksScreen extends StatelessWidget {
               Center(
                 child: Chip(
                   label: Text(
-                    '${tasksList.length} Pending | ${tasksList.length} Completed',
+                    '${state.pendingTasks.length} Pending | ${state.completedTasks.length} Completed',
                   ),
                 ),
               ),
               const SizedBox(height: 10),
-              TasksList(tasksList: tasksList),
+              TasksList(tasksList: state.pendingTasks),
             ],
           ),
         );

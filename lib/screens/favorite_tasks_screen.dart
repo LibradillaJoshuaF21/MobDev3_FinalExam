@@ -2,7 +2,6 @@ import 'package:bloc_finals_exam/blocs/bloc_exports.dart';
 import 'package:flutter/material.dart';
 
 import '../models/task.dart';
-import '../test_data.dart';
 import '../widgets/tasks_list.dart';
 
 class FavoriteTasksScreen extends StatelessWidget {
@@ -10,9 +9,9 @@ class FavoriteTasksScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Task> tasksList = TestData.favoriteTasks;
     return BlocBuilder<TasksBloc, TasksState>(
       builder: (context, state) {
+        List<Task> tasksList = state.favoriteTasks;
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
           child: Column(
