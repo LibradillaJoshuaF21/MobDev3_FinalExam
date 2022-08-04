@@ -27,6 +27,12 @@ class TaskTile extends StatelessWidget {
     );
   }
 
+  _removeOrDeleteTask(BuildContext context, Task task) {
+    task.isDeleted!
+        ? context.read<TasksBloc>().add(DeleteTask(task: task))
+        : context.read<TasksBloc>().add(RemoveTask(task: task));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -79,9 +85,17 @@ class TaskTile extends StatelessWidget {
                 Navigator.pop(context);
                 _editTask(context);
               },
-              likeOrDislikeCallback: () {},
-              cancelOrDeleteCallback: () {},
-              restoreTaskCallback: () => {},
+              likeOrDislikeCallback: () {
+                context.read<TasksBloc>().add(MarkFavoriteOrUnfavoriteTask(
+                      task: task,
+                    ));
+              },
+              cancelOrDeleteCallback: () {
+                _removeOrDeleteTask(context, task);
+              },
+              restoreTaskCallback: () {
+                context.read<TasksBloc>().add(RestoreTask(task: task));
+              },
             ),
           ],
         ),

@@ -96,8 +96,14 @@ class _AddEditTaskState extends State<AddEditTask> {
                             title: _title,
                             description: _description,
                           );
-                          context.read<TasksBloc>().add(AddTask(task: task));
-                          Navigator.pop(context);
+                          if (widget.task == null) {
+                            context.read<TasksBloc>().add(AddTask(task: task));
+                            Navigator.pop(context);
+                          } else {
+                            context.read<TasksBloc>().add(
+                                EditTask(oldTask: widget.task!, newTask: task));
+                            Navigator.pop(context);
+                          }
                         }
                       : null,
                   child: widget.task == null
