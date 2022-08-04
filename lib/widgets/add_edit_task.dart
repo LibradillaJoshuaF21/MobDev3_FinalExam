@@ -100,9 +100,8 @@ class _AddEditTaskState extends State<AddEditTask> {
                             context.read<TasksBloc>().add(AddTask(task: task));
                             Navigator.pop(context);
                           } else {
-                            context
-                                .read<TasksBloc>()
-                                .add(UpdateTask(task: task));
+                            context.read<TasksBloc>().add(
+                                EditTask(oldTask: widget.task!, newTask: task));
                             Navigator.pop(context);
                           }
                         }

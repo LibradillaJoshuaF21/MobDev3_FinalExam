@@ -82,6 +82,7 @@ class TaskTile extends StatelessWidget {
             PopupMenu(
               task: task,
               editCallback: () {
+                Navigator.pop(context);
                 _editTask(context);
               },
               likeOrDislikeCallback: () {
